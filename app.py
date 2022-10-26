@@ -11,7 +11,7 @@ app = Flask(__name__)
 oi_shortdata, oi_data, long_total, short_total, nifty_spot,time_oi,rtime =oc.chain()
 
 
-@app.route("/")
+@app.route("/" , methods=['GET'])
 def index():
     return render_template('index.html')
 
