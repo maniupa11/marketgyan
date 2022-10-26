@@ -15,7 +15,7 @@ def nifty50():
             responses = await asyncio.gather(*tasks)
             for response in responses:
                 results.append(await response.json())
-    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+    # asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     asyncio.run(get_symbols())
     col_names = ['Company','LTP','Change','% Change', 'High','Low','Open','Close','Volume']
     st_data = pd.DataFrame(columns = col_names)
