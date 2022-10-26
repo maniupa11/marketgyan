@@ -1,10 +1,7 @@
-import csv
 from datetime import datetime
 import time
 import pandas as pd
 import requests
-import numpy as np
-import json
 
 def chain():
     def nsefetch(payload):

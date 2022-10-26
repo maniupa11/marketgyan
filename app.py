@@ -4,22 +4,21 @@ from datetime import datetime
 import oc
 import FNOstock
 import stock
-from flask_sqlalchemy import SQLAlchemy
 import stockhistory
 # from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///nifty200.db"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db=SQLAlchemy(app)
+# app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///nifty200.db"
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# db=SQLAlchemy(app)
 oi_shortdata, oi_data, long_total, short_total, nifty_spot,time_oi,rtime =oc.chain()
 
-class stocks(db.Model):
-    mcsymbol=db.Column(db.String(10), primary_key=True)
-    ticker= db.Column(db.String(40), nullable=False)
-    high10d=db.Column(db.Float, nullable=False)
-    low10d=db.Column(db.Float, nullable=False)
-    vol30d_avg=db.Column(db.Float, nullable=False)
+# class stocks(db.Model):
+#     mcsymbol=db.Column(db.String(10), primary_key=True)
+#     ticker= db.Column(db.String(40), nullable=False)
+#     high10d=db.Column(db.Float, nullable=False)
+#     low10d=db.Column(db.Float, nullable=False)
+#     vol30d_avg=db.Column(db.Float, nullable=False)
 
 
 @app.route("/")
