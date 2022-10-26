@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+
+{% include 'navbar.html' %}
+
+{% block content %}
+{% endblock %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<div class="container">
+  <h1> Stock Data</h1>
+  <!-- <h2> NIFTY SPOT : {{nifty_spot}}  Refresh Time : {{time_oi}}</h2> -->
+  <title>Simple tables</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='st.css') }}">
+  <!-- <div class="sttable">
+    {% for table in tables %}
+    {{ table|safe }}
+    {% endfor %}
+    </table> -->
+  <table class="sttable">
+
+    <thead>
+      {%- for column in tables %}
+      <th>{{ column }}</th>
+      {%- endfor %}
+    </thead>
+
+    <tbody>
+      {%- for row in tables.index %}
+      <tr>
+        <td>{{tables.iloc[row]['symbol']}}</td>
+        <td>{{tables.iloc[row]['lastPrice']}}</td>
+        <td>{{tables.iloc[row]['open']}}</td>
+        <td>{{tables.iloc[row]['dayHigh']}}</td>
+        <td>{{tables.iloc[row]['dayLow']}}</td>
+        <td>{{tables.iloc[row]['previousClose']}}</td>
+        <td>{{tables.iloc[row]['pChange']}}</td>
+        <td>{{tables.iloc[row]['totalTradedVolume']}}</td>
+
+      </tr>
+      {%- endfor %}
+    </tbody>
+  </table>
+  <!-- </div> -->
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+
+<script>
+  $('th').click(function () {
+    var table = $(this).parents('table').eq(0)
+    console.log(table)
+    var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
+    this.asc = !this.asc
+    if (!this.asc) {
+      rows = rows.reverse()
+    }
+    for (var i = 0; i < rows.length; i++) {
+      table.append(rows[i])
+    }
+  })
+
+  function comparer(index) {
+    return function (a, b) {
+      var valA = getCellValue(a, index),
+        valB = getCellValue(b, index)
+      return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB)
+    }
+  }
+
+  function getCellValue(row, index) {
+    return $(row).children('td').eq(index).text()
+  }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+{% include 'navbar.html' %}
+
+{% block content %}
+{% endblock %}
+
+
+<div id="octable_hd" class="container">
+  <h1> Option Chain</h1>
+  <h3>{{time_oi}}</h3>
+  <h5>{{rtime}}</h5>
+  <title>Option Chain</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <div id="octable" class="page">
+    <table id="oc_table" class="octable">
+      <thead>
+        <th colspan="4" style="text-align: center ; background-color: green">CALLS</th>
+        <th style="text-align: center ; background-color: #555 ; color:white">{{nifty_spot}}</th>
+        <th colspan="4" style="text-align: center; background-color: red"">PUTS</th>        
+              <tr style=" text-align: center; color:white; font-weight: bold;">
+        <th>Open Intrest</th>
+        <th>Chng in OI</th>
+        <th>Net Chng</th>
+        <th>LTP(Rs.)</th>
+        <th>Strike Price</th>
+        <th>LTP(RS.)</th>
+        <th>Net Chng</th>
+        <th>Chng in OI</th>
+        <th>Open Intrest</th>
+        </tr>
+      </thead>
+      <tbody id="oc_body">
+        <!-- {m=0} -->
+        {%- for index in oi_shortdata.index %}
+        <tr>
+          <td>{{oi_shortdata.iloc[index]['CALLS_OI']}}</td>
+          <td>{{oi_shortdata.iloc[index]['CALLS_Chng_in_OI']}}</td>
+          <td>{{oi_shortdata.iloc[index]['CALLS_Net_Chng']}}</td>
+          <td>{{oi_shortdata.iloc[index]['CALLS_LTP']}}</td>
+          <td>{{oi_shortdata.iloc[index]['Strike_Price']}}</td>
+          <td>{{oi_shortdata.iloc[index]['PUTS_LTP']}}</td>
+          <td>{{oi_shortdata.iloc[index]['PUTS_Net_Chng']}}</td>
+          <td>{{oi_shortdata.iloc[index]['PUTS_Chng_in_OI']}}</td>
+          <td>{{oi_shortdata.iloc[index]['PUTS_OI']}}</td>
+          
+        </tr>
+        {%- endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<!-- <script src="/ajax.js"></script> -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<script>
+  $(function () {
+    window.setInterval(function () {
+      loadoc()
+    }, 30000)
+
+
+    function loadoc() {
+      $.ajax({
+        url: "/ocreload",
+        type: "POST",
+        dataType: "json",
+        success: function (ocdata) {
+          $(oc_body).replaceWith(ocdata)
+
+        }
+
+      });
+    }
+
+  });
+</script>
+</body>
+
+</html>

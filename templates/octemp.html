@@ -1,0 +1,16 @@
+<tbody id="oc_body">
+  <!-- {m=0} -->
+  {%- for index in oi_shortdata.index %}
+  <tr>
+    <td>{{oi_shortdata.iloc[index]['CALLS_OI']}}</td>
+    <td>{{oi_shortdata.iloc[index]['CALLS_Chng_in_OI']}}</td>
+    <td>{{oi_shortdata.iloc[index]['CALLS_Net_Chng']}}</td>
+    <td>{{oi_shortdata.iloc[index]['CALLS_LTP']}}</td>
+    <td>{{oi_shortdata.iloc[index]['Strike_Price']}}</td>
+    <td>{{oi_shortdata.iloc[index]['PUTS_LTP']}}</td>
+    <td>{{oi_shortdata.iloc[index]['PUTS_Net_Chng']}}</td>
+    <td>{{oi_shortdata.iloc[index]['PUTS_Chng_in_OI']}}</td>
+    <td>{{oi_shortdata.iloc[index]['PUTS_OI']}}</td>
+  </tr>
+  {%- endfor %}
+</tbody>

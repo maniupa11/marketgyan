@@ -1,0 +1,20 @@
+<tbody id="st_body">
+  {%- for index in st_data.index %}
+  <tr>
+    <td>{{st_data.iloc[index]['Company']}}</td>
+    <td>{{st_data.iloc[index]['LTP']}}</td>
+    <!-- <td>{{st_data.iloc[index]['Change']}}</td> -->
+    <td>{{st_data.iloc[index]['% Change']}}</td>
+    <!-- <td>{{st_data.iloc[index]['High']}}</td> -->
+    <!-- <td>{{st_data.iloc[index]['Low']}}</td> -->
+    <!-- <td>{{st_data.iloc[index]['Open']}}</td> -->
+    <!-- <td>{{st_data.iloc[index]['Close']}}</td> -->
+    <td>{{st_data.iloc[index]['Volume']}}</td>
+    <td>{{st_history.iloc[index]['high10d']}}</td>
+    <td>{{st_history.iloc[index]['low10d']}}</td>
+    <td>{{st_history.iloc[index]['Signal']}}</td>
+    <td>{{st_history.iloc[index]['Vol Factor']}}</td>
+  </tr>
+  {%- endfor %}
+</tbody>
+

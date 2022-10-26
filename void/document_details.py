@@ -1,0 +1,5 @@
+username = 'AB151545'
+password = 'manishs1'
+twoFA 	 = '1986'
+api_secret = 'K9chdqGkkd94KYZLv0HOFj9Dn8kANDaCBkkWgwLkXJswyTyQZf4zSmTQyTp9Ohe1'
+app_id = 'rXuyb7xcRH'

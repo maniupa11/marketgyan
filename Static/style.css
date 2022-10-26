@@ -1,0 +1,70 @@
+body            { font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;}
+a, h1, h2       { color: #377ba8; }
+h1, h2          { margin: 0; }
+h1              { border-bottom: 2px solid #eee; }
+h2              { font-size: 1.2em; }
+
+table.dataframe, .dataframe th, .dataframe td {
+  /* border: none; */
+  /* border-bottom: 1px solid #000; */
+  border: 1px solid #000;
+  border-collapse : collapse;
+  text-align:center;
+  /* width: 100px; */
+  padding: 1px;
+  margin-bottom: 40px;
+  font-size: 0.9em;
+}
+/* .dataframe tr:hover { background-color: #56f3f8;} */
+.page th {
+    background-color: #444;
+    color: white;
+    border: 1px;
+    width: 100px;
+}
+
+.page td:nth-child(5)		{ background-color:#555; width: 120px; color:white;font-weight: bold ; border: 1px solid black}
+.page td:nth-child(4)		{ color:blue;font-weight: bold}
+.page td:nth-child(6)		{ color:blue;font-weight: bold}
+/* .page tr:hover	{ background-color: #0000ff} */
+.page th:nth-child(n+1)	{  background-color:#555;width: 100px ; border:1px solid black}
+.page th:nth-child(5)		{ width: 120px; }
+
+.page tr:nth-child(-n+11) td:nth-child(-n+4)	{  background-color:rgb(255, 255, 200);width: 100px }
+.page tr:nth-child(n+11) td:nth-child(n+6)	{ background-color:rgb(249, 249, 200); width : 100px }
+
+.page tr:nth-last-child(-n+2) td:nth-child(n)	{ background-color:#555; color:white;font-weight: bold ;}
+/* tr:nth-last-child(2) 	{ background-color:#555} */
+/* tr:nth-child(n+11) td:nth-child(n+6)	{ background-color:rgb(249, 249, 200); width : 100px } */
+.page tr:hover { background-color: #56f3f8;}
+
+
+table.stock, .stock th, .stock td {
+  /* border: none; */
+  /* border-bottom: 1px solid #000; */
+  border: 1px solid #000;
+  border-collapse : collapse;
+  text-align:center;
+  /* width: 100px; */
+  padding: 1px;
+  margin-bottom: 40px;
+  font-size: 0.9em;
+}
+/* .dataframe tr:hover { background-color: #56f3f8;} */
+.stock th {
+    background-color: #222;
+    color: white;
+    border: 1px;
+    width: 100px;
+}
+
+.stock td:nth-child(1)		{ background-color:#666; width: 120px; color:white;font-weight: bold ; border: 1px solid black}
+.stock td:nth-child(2)		{ color:blue;font-weight: bold}
+.stock tr:nth-child(even) {
+  background: #E0E0E0;
+}
+
+.stock tr:hover {
+  background: silver;
+  cursor: pointer;
+}

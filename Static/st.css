@@ -1,0 +1,155 @@
+body {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+a,
+h1,
+h2 {
+  color: #377ba8;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+h1 {
+  border-bottom: 2px solid #eee;
+}
+
+h2 {
+  font-size: 1.2em;
+}
+.stock {
+  padding-right: 20%;
+}
+.sttable {
+  border-spacing: 1;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  padding-right: 10%;
+}
+
+.sttable * {
+  position: relative
+}
+
+.sttable td,
+.sttable th {
+    padding-left: 8px;
+}
+
+.sttable thead tr {
+  height: 60px;
+  background: #422d85
+}
+
+.sttable tbody tr {
+  height: 40px
+}
+
+.sttable tbody tr:last-child {
+  border: 0
+}
+
+.sttable th {
+  font-family: OpenSans-Regular;
+  text-align: Left;
+  font-size: 18px;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: unset;
+  cursor: pointer
+}
+
+tbody tr:nth-child(even) {
+  background-color: #e6f0f7
+}
+
+.sttable td:nth-child(1) {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+tbody tr {
+  font-family: OpenSans-Regular;
+  font-size: 15px;
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  font-weight: unset
+}
+
+tbody tr:hover {
+  color: #555;
+  background-color: #f5f5f5;
+  
+}
+
+
+/* .sttable th {
+  cursor: pointer;
+} */
+
+.sttable .th-sort-asc::after {
+  content: "\25b4";
+}
+
+.sttable .th-sort-desc::after {
+  content: "\25be";
+}
+
+.sttable .th-sort-asc::after,
+.sttable .th-sort-desc::after {
+  margin-left: 5px;
+}
+
+.sttable .th-sort-asc,
+.sttable .th-sort-desc {
+  background: rgba(0, 0, 0, 0.1);
+}
+/* table.dataframe,
+.dataframe th,
+.dataframe td {
+  border-collapse: collapse;
+  text-align: center;
+  padding: 1px;
+  margin-bottom: 40px;
+  font-size: 0.9em;
+}
+
+.dataframe tr:hover {
+  background-color: #56f3f8;
+}
+
+.dataframe th {
+  background-color: #222;
+  color: white;
+  width: 100px;
+}
+
+.stock td:nth-child(1) {
+  background: rgb(30, 220, 234);
+  width: 120px;
+  color: white;
+  font-weight: bold
+}
+
+.stock td:nth-child(2) {
+  color: blue;
+  font-weight: bold
+}
+
+.stock tr:nth-child(even) {
+  background: #E0E0E0;
+}
+
+.stock tr:hover {
+  background-color: rgb(222, 224, 138);
+  cursor: pointer;
+} */

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+
+{% include 'navbar.html' %}
+
+{% block content %}
+{% endblock %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<div id="sttable_hd" class="container" style="overflow-x:auto">
+  <h1> NIFTY 50 Stocks</h1><br>
+
+  <title>Stocks Data</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='st.css') }}">
+  <div id="st_table_div" class="stock">
+    <!-- {% for table in st_data %}
+    {{ table|safe }}
+    {% endfor %} -->
+    <!-- </table> -->
+    <table id="st_table" class="sttable">
+
+      <thead>
+        <th>Symbol</th>
+        <th>LTP</th>
+        <!-- <th>Change</th> -->
+        <th>% Change</th>
+        <!-- <th>High</th> -->
+        <!-- <th>Low</th> -->
+        <!-- <th>Open</th> -->
+        <!-- <th>Close</th> -->
+        <th>Volume</th>
+        <th>10 Day High</th>
+        <th>10 Day Low</th>
+        <th>Signal</th>
+        <th>Vol. Factor</th>
+      </thead>
+      <tbody id="st_body">
+        <!-- {m=0} -->
+        {%- for index in st_data.index %}
+        <tr>
+          <td>{{st_data.iloc[index]['Company']}}</td>
+          <td>{{st_data.iloc[index]['LTP']}}</td>
+          <!-- <td>{{st_data.iloc[index]['Change']}}</td> -->
+          <td>{{st_data.iloc[index]['% Change']}}</td>
+          <!-- <td>{{st_data.iloc[index]['High']}}</td> -->
+          <!-- <td>{{st_data.iloc[index]['Low']}}</td> -->
+          <!-- <td>{{st_data.iloc[index]['Open']}}</td> -->
+          <!-- <td>{{st_data.iloc[index]['Close']}}</td> -->
+          <td>{{st_data.iloc[index]['Volume']}}</td>
+          <td>{{st_history.iloc[index]['high10d']}}</td>
+          <td>{{st_history.iloc[index]['low10d']}}</td>
+          <td>{{st_history.iloc[index]['Signal']}}</td>
+          <td>{{st_history.iloc[index]['Vol Factor']}}</td>
+          <!-- {m=m+1} -->
+        </tr>
+        {%- endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<!-- <script src="/ajax.js"></script> -->
+
+<script>
+  let sortd = 0;
+  let sortindex = -1;
+  $(function () {
+    window.setInterval(function () {
+      loadoc() // load or refresh data
+      // console.log('reload')
+      // console.log(sortindex)
+    }, 5000)
+
+
+    function loadoc() {
+      $.ajax({
+        url: "/streload",
+        type: "POST",
+        dataType: "json",
+        success: function (stdata) {
+          $(st_body).replaceWith(stdata)
+          if (sortd != 0) {
+            var table = $('table').eq(0)
+            var rows = table.find('tr:gt(0)').toArray().sort(comparer(sortindex))
+            // console.log(rows)
+            if (sortd == -1) {
+              rows = rows.reverse()
+            }
+            for (var i = 0; i < rows.length; i++) {
+              table.append(rows[i])
+            }
+          }
+        }
+      });
+    }
+  });
+
+  $('th').click(function () {
+    var table = $(this).parents('table').eq(0)
+    var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
+    // console.log('tr:gt(0)')
+    sortindex = $(this).index()
+    $(this).parent().children().removeClass("th-sort-asc");
+    $(this).parent().children().removeClass("th-sort-desc");
+    this.asc = !this.asc
+    if (!this.asc) {
+      rows = rows.reverse()
+      sortd = -1;
+      $(this).addClass('th-sort-desc')
+    }
+    if (this.asc) {
+      $(this).addClass('th-sort-asc')
+      sortd = 1;
+    }
+    for (var i = 0; i < rows.length; i++) {
+      table.append(rows[i])
+    }
+
+  })
+
+  function comparer(index) {
+    return function (a, b) {
+      // console.log(a);
+      // console.log(b);
+      var valA = getCellValue(a, index),
+        valB = getCellValue(b, index)
+      return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB)
+    }
+  }
+
+  function getCellValue(row, index) {
+    return $(row).children('td').eq(index).text()
+  }
+</script>
+</body>
+
+</html>
