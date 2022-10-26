@@ -76,6 +76,7 @@ def stockdata():
     stock_table=stock.nifty200()
 
     return render_template('stockdata.html',tables=stock_table)
-if __name__ == "__main__":
-    app.run(debug=True, port=8000)
+
+# if __name__ == "__main__":
+#     app.run(debug=True, port=8000)
     # app.run(debug=False, host= 0.0.0.0)
