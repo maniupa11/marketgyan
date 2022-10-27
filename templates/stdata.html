@@ -38,7 +38,12 @@
         <!-- {m=0} -->
         {%- for index in st_data.index %}
         <tr>
-          <td>{{st_history.iloc[index]['ticker']}}</td>
+          <!-- <td><a href='https://in.tradingview.com/chart/?symbol=NSE%3ATITAN' >{{st_history.iloc[index]['ticker']}}</a> -->
+          <td>
+          <a href="{{ 'https://in.tradingview.com/chart/?symbol=NSE%3A' + st_history.iloc[index]['ticker'] }}" target="_blank">
+            {{st_history.iloc[index]['ticker']}}
+          </a>
+          </td>
           <td>{{st_data.iloc[index]['LTP']}}</td>
           <!-- <td>{{st_data.iloc[index]['Change']}}</td> -->
           <td>{{st_data.iloc[index]['% Change']}}</td>
