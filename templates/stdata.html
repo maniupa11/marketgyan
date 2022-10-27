@@ -38,7 +38,7 @@
         <!-- {m=0} -->
         {%- for index in st_data.index %}
         <tr>
-          <td>{{st_data.iloc[index]['Company']}}</td>
+          <td>{{st_history.iloc[index]['ticker']}}</td>
           <td>{{st_data.iloc[index]['LTP']}}</td>
           <!-- <td>{{st_data.iloc[index]['Change']}}</td> -->
           <td>{{st_data.iloc[index]['% Change']}}</td>

@@ -38,7 +38,7 @@ def stdata():
     curtime=datetime.now().strftime('%H:%M')
     voltimefactor=min((int(curtime[0:2])*60 +int(curtime[3:5])-555)/375,1)
     for i in range(len(st_data)):
-        volfactor.append(round(st_data.iloc[i]['Volume']/st_history.iloc[i]['vol30d_avg']*voltimefactor,2))
+        volfactor.append(round(st_data.iloc[i]['Volume']/(st_history.iloc[i]['vol30d_avg']*voltimefactor),2))
         if st_data.iloc[i]['LTP']>st_history.iloc[i]['high10d']:
             highlow10d.append("10 Day High Corss")
         elif st_data.iloc[i]['LTP']<st_history.iloc[i]['low10d']:
@@ -59,7 +59,7 @@ def streload():
     # print(voltimefactor)
     for i in range(len(st_data)):
         voltemp=st_data.iloc[i]['Volume']/st_history.iloc[i]['vol30d_avg']
-        volfactor.append(round(st_data.iloc[i]['Volume']/st_history.iloc[i]['vol30d_avg']*voltimefactor,2))
+        volfactor.append(round(st_data.iloc[i]['Volume']/(st_history.iloc[i]['vol30d_avg']*voltimefactor),2))
         if st_data.iloc[i]['LTP']>st_history.iloc[i]['high10d']:
             highlow10d.append("10 Day High Corss")
         elif st_data.iloc[i]['LTP']<st_history.iloc[i]['low10d']:
